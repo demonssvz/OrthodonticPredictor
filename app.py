@@ -8,13 +8,16 @@ import torchvision.transforms as transforms
 from PIL import Image
 import os
  
-model_filename = 'model.pkl'
+model_filename = 'model1.pkl'
+
+model_filename2 = 'model.pkl'
 
 if not os.path.exists(model_filename):
     st.error("Model file 'model.pkl' not found. Please upload the model file to proceed.")
 else:
     # Load the pre-trained model
     model = joblib.load(model_filename)
+    model2 = joblib.load(model_filename2)
  
  
 resnet_model = models.resnet18(pretrained=True)
@@ -67,5 +70,6 @@ if st.button("Predict P-value"):
     })
  
     prediction = model.predict(new_data)
+    prediction2 = model2.predict(new_data)
  
-    st.write(f"Predicted p-value: {prediction[0]:.4f}")
+    st.write(f"Predicted Post-treatment length is : {prediction[0]:.4f} and the p-value is  {prediction2[0]:.4f} ")
