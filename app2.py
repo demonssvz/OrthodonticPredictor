@@ -76,12 +76,17 @@ if uploaded_file:
 if st.button("Predict P-value"):
     # Create a DataFrame for prediction, using the exact feature name as in the training data
     new_data = pd.DataFrame({
+        'preimagenumber': [preimage_number]  # Ensure name matches training feature name
+    })
+
+     new_data1= pd.DataFrame({
         'PreimageNumber': [preimage_number]  # Ensure name matches training feature name
     })
 
+
     try:
         # Make predictions using both models
-        prediction_length = model1.predict(new_data)
+        prediction_length = model1.predict(new_data1)
         prediction_pvalue = model2.predict(new_data)
 
         # Display predictions
